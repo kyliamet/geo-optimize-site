@@ -1,0 +1,25 @@
+name: Improvement proposal
+description: Propose a focused improvement grounded in a real GEO workflow
+title: "[Proposal]: "
+labels:
+  - enhancement
+body:
+  - type: textarea
+    id: use_case
+    attributes:
+      label: Use case
+      description: Describe the real request or recurring failure this change would address.
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed change
+      description: Explain the smallest skill or documentation change that would help.
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Supporting evidence
+      description: Link official provider documentation when the proposal concerns crawler behavior or platform features.

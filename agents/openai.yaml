@@ -1,0 +1,4 @@
+interface:
+  display_name: "GEO Optimize Site"
+  short_description: "Improve visibility in AI-generated answers"
+  default_prompt: "Use $geo-optimize-site to audit and implement GEO improvements for this website."

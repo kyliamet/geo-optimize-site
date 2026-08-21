@@ -30,4 +30,4 @@ Call out crawler-policy choices, unsupported claims, deployment-dependent behavi
 
 ## Propagation observations
 
-Include this section only when the user requested downstream re-checking. For each engine and control query, record the timestamp, expected fact, observed fact, cited URLs, comparison limitations, and one state: `site-fixed`, `crawl-signals-updated`, `current-observation`, `engine-stale`, `propagated`, or `unable-to-verify`. Use `current-observation`, not `propagated`, when a correct downstream answer has no comparable baseline.
+Include this section only when the user requested downstream re-checking. For each engine and control query, record the timestamp, expected fact, observed fact, cited URLs, comparison limitations, and one state: `site-fixed`, `crawl-signals-updated`, `current-observation`, `engine-stale`, `propagated`, or `unable-to-verify`. Use `propagated` only for a measured stale-to-correct transition. Without that transition, use `current-observation` for a correct current answer and `engine-stale` for a disproven or superseded current answer.

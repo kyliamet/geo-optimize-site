@@ -18,13 +18,13 @@ Use this workflow only when the user asks whether a verified site correction has
 
 - Query only the engines the user named or authorized. Do not silently broaden the check to additional providers.
 - Capture the answer, relevant quoted fact, cited URLs, and timestamp. Preserve a short excerpt only when needed to identify the stale claim.
-- Compare facts and citations with the baseline. If no baseline exists, label the result as a current observation rather than a measured change.
+- Compare facts and citations with the baseline. Without a demonstrated stale-to-correct transition, do not claim propagation: use `current-observation` for a correct current result, `engine-stale` for a disproven or superseded current result, and `unable-to-verify` when the evidence is inconclusive.
 - Use one of these states for each engine and query:
   - `site-fixed`: the origin is corrected, but crawl-signal submission or downstream state was not verified.
   - `crawl-signals-updated`: the origin and intended discovery signals are corrected, but downstream answers remain unverified.
-  - `current-observation`: no comparable baseline exists, and the current engine response reflects the corrected fact without relying on the stale source; this does not prove propagation.
+  - `current-observation`: the current engine response reflects the corrected fact without relying on the stale source, but no comparable stale baseline establishes a change; this includes a missing baseline or a baseline that was already correct.
   - `engine-stale`: the engine still presents the disproven or superseded fact, or cites a removed source as supporting it.
-  - `propagated`: the comparable observation reflects the corrected fact and no longer relies on the stale source.
+  - `propagated`: a comparable baseline presented the superseded fact or relied on the stale source, and the current observation now reflects the corrected fact without relying on that source.
   - `unable-to-verify`: access, authentication, regional variation, missing citations, or another constraint prevents a defensible conclusion.
 
 ## Keep actions bounded

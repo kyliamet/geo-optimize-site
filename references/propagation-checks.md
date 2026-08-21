@@ -22,6 +22,7 @@ Use this workflow only when the user asks whether a verified site correction has
 - Use one of these states for each engine and query:
   - `site-fixed`: the origin is corrected, but crawl-signal submission or downstream state was not verified.
   - `crawl-signals-updated`: the origin and intended discovery signals are corrected, but downstream answers remain unverified.
+  - `current-observation`: no comparable baseline exists, and the current engine response reflects the corrected fact without relying on the stale source; this does not prove propagation.
   - `engine-stale`: the engine still presents the disproven or superseded fact, or cites a removed source as supporting it.
   - `propagated`: the comparable observation reflects the corrected fact and no longer relies on the stale source.
   - `unable-to-verify`: access, authentication, regional variation, missing citations, or another constraint prevents a defensible conclusion.

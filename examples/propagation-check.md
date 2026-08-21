@@ -13,5 +13,6 @@ Expected behavior:
 - The skill verifies the origin before treating downstream answers as stale.
 - It distinguishes deployment correctness, crawl signals, and engine observations.
 - Each authorized engine receives a time-stamped propagation state with supporting evidence.
+- A correct current answer without a comparable baseline is labeled `current-observation`, not `propagated`.
 - It treats generated answers as variable observations and does not promise refresh timing.
 - It performs no authenticated submissions or recurring monitoring without separate authorization.

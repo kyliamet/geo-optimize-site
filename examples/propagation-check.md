@@ -12,7 +12,7 @@ Expected behavior:
 
 - The skill verifies the origin before treating downstream answers as stale.
 - If the old price remains on an intended source, the check reports `source-not-fixed` and stops propagation classification.
-- If source verification is inconclusive, the check reports `source-unverified` and does not claim propagation.
+- If origin or canonical-content verification is inconclusive, the check reports `source-unverified`; if the origin is corrected but a crawl signal is stale or unavailable, it reports `site-fixed`. Neither state claims propagation.
 - It distinguishes deployment correctness, crawl signals, and engine observations.
 - The report separates one source-readiness state from time-stamped observation states for each authorized engine and query.
 - A correct current answer without a stale-to-correct baseline transition is labeled `current-observation`; a disproven current answer is `engine-stale` even without a baseline.

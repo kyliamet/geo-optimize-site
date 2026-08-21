@@ -75,7 +75,7 @@ When explicitly requested, the skill can capture comparable engine observationsâ
 
 `Propagated` is reserved for a measured stale-to-correct transition. A correct answer without that transition is a `current-observation`; a current answer containing the disproven fact remains `engine-stale` even when no baseline was captured.
 
-If source-first verification finds the superseded fact on an intended canonical page or crawl source, the check stops at `source-not-fixed`. If source verification is inconclusive, it stops at `source-unverified`. Downstream propagation is not classified until the source is verified as corrected.
+If source-first verification finds the superseded fact on an intended canonical page or crawl source, the check stops at `source-not-fixed`. If origin or canonical-content verification is inconclusive, it stops at `source-unverified`. An unavailable or stale crawl signal maps to `site-fixed` once the origin is verified as corrected. Downstream propagation is not classified until the source and crawl signals are verified as corrected.
 
 Live engine queries, authenticated webmaster actions, reindex requests, and recurring monitoring require explicit authorization. The skill does not claim it can force a refresh or guarantee propagation timing.
 

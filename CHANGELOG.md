@@ -6,6 +6,13 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ## [Unreleased]
 
+### Added
+
+- Opt-in post-deployment propagation checks that distinguish a corrected origin from stale downstream engine answers.
+- Evidence-based propagation states for comparable control queries and citations, reserving propagation for measured stale-to-correct transitions.
+- Mutually exclusive source-readiness states for conclusive source failures, inconclusive origin verification, and stale or unverified crawl signals.
+- A deleted pricing-page example covering source verification, engine observations, authorization boundaries, and monitoring limits.
+
 ## [1.0.0] - 2026-08-20
 
 ### Added

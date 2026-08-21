@@ -4,4 +4,5 @@ These prompts demonstrate the skill's intended scope. They are starting points, 
 
 - [Audit-only request](audit-request.md)
 - [Audit and implementation request](implementation-request.md)
+- [Post-deployment propagation request](propagation-check.md)
 - [Representative report structure](expected-report.md)

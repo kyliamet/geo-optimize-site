@@ -1,0 +1,20 @@
+# Post-deployment propagation request
+
+```text
+$geo-optimize-site check whether our pricing correction has propagated.
+
+Ten days ago we removed /pricing-old, updated the live pricing pages, and removed the old URL from the sitemap. Re-run the following control query in the answer engines I authorize: "What does Example Product cost?"
+
+The verified current price is $49 per month. Record each engine, timestamp, answer, quoted price, and cited URLs. First verify that our origin and crawl signals no longer expose the old $39 price. Do not submit reindex or removal requests and do not schedule recurring checks.
+```
+
+Expected behavior:
+
+- The skill verifies the origin before treating downstream answers as stale.
+- If the old price remains on an intended source, the check reports `source-not-fixed` and stops propagation classification.
+- If origin or canonical-content verification is inconclusive, the check reports `source-unverified`; if the origin is corrected but a crawl signal is stale or unavailable, it reports `site-fixed`. Neither state claims propagation.
+- It distinguishes deployment correctness, crawl signals, and engine observations.
+- The report separates one source-readiness state from time-stamped observation states for each authorized engine and query.
+- A correct current answer without a stale-to-correct baseline transition is labeled `current-observation`; a disproven current answer is `engine-stale` even without a baseline.
+- It treats generated answers as variable observations and does not promise refresh timing.
+- It performs no authenticated submissions or recurring monitoring without separate authorization.

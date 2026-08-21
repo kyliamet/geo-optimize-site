@@ -2,7 +2,7 @@
 
 `geo-optimize-site` is a Codex skill for auditing and improving a website's visibility in AI-generated answers. It helps Codex make public content easier for answer engines to discover, understand, quote, and cite while preserving factual accuracy, accessibility, design, and conventional SEO.
 
-The skill covers answer-first page structure, crawlable content, metadata, canonicals, structured data, sitemaps, `llms.txt`, crawler policy, internal links, and implementation validation. It does not manufacture claims or treat model-training access as a requirement for citation visibility.
+The skill covers answer-first page structure, crawlable content, metadata, canonicals, structured data, sitemaps, `llms.txt`, crawler policy, internal links, implementation validation, and opt-in checks for whether corrections have propagated to external answer engines. It does not manufacture claims or treat model-training access as a requirement for citation visibility.
 
 ## When to use it
 
@@ -12,6 +12,7 @@ Use the skill for requests such as:
 - "Improve our visibility in AI search and answer engines."
 - "Review our `llms.txt`, sitemap, structured data, and crawler rules."
 - "Implement the highest-value GEO fixes and validate the site afterward."
+- "Check whether the corrected price has propagated to the answer engines we tested."
 
 It is intentionally not triggered for ordinary SEO-only work or generic marketing copy.
 
@@ -62,8 +63,21 @@ Depending on the site and the user's request, the skill may:
 - Review crawler rules using current official provider documentation.
 - Improve descriptive alt text and internal linking.
 - Run project checks and inspect rendered pages before reporting completion.
+- Re-run user-approved control queries and distinguish a corrected site from stale downstream answers.
 
 The skill audits before editing and preserves unrelated changes. It requires separate authorization before staging, committing, pushing, or opening a pull request.
+
+## Post-deployment propagation checks
+
+A passing site audit proves only that the origin and its crawl signals are correct. It does not prove that an external search or answer engine has refreshed its index, cache, or generated response.
+
+When explicitly requested, the skill can capture comparable engine observations—control query, timestamp, quoted fact, and cited URLs. It reports source readiness as `source-not-fixed`, `source-unverified`, `site-fixed`, or `crawl-signals-updated`; downstream engine observations are classified separately as `current-observation`, `engine-stale`, `propagated`, or `unable-to-verify`.
+
+`Propagated` is reserved for a measured stale-to-correct transition. A correct answer without that transition is a `current-observation`; a current answer containing the disproven fact remains `engine-stale` even when no baseline was captured.
+
+If source-first verification finds the superseded fact on an intended canonical page or crawl source, the check stops at `source-not-fixed`. If origin or canonical-content verification is inconclusive, it stops at `source-unverified`. An unavailable or stale crawl signal maps to `site-fixed` once the origin is verified as corrected. Downstream propagation is not classified until the source and crawl signals are verified as corrected.
+
+Live engine queries, authenticated webmaster actions, reindex requests, and recurring monitoring require explicit authorization. The skill does not claim it can force a refresh or guarantee propagation timing.
 
 ## Design principles
 

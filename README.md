@@ -71,9 +71,11 @@ The skill audits before editing and preserves unrelated changes. It requires sep
 
 A passing site audit proves only that the origin and its crawl signals are correct. It does not prove that an external search or answer engine has refreshed its index, cache, or generated response.
 
-When explicitly requested, the skill can capture comparable engine observations—control query, timestamp, quoted fact, and cited URLs—and classify each result as `site-fixed`, `crawl-signals-updated`, `current-observation`, `engine-stale`, `propagated`, or `unable-to-verify`.
+When explicitly requested, the skill can capture comparable engine observations—control query, timestamp, quoted fact, and cited URLs. It reports source readiness as `source-not-fixed`, `source-unverified`, `site-fixed`, or `crawl-signals-updated`; downstream engine observations are classified separately as `current-observation`, `engine-stale`, `propagated`, or `unable-to-verify`.
 
 `Propagated` is reserved for a measured stale-to-correct transition. A correct answer without that transition is a `current-observation`; a current answer containing the disproven fact remains `engine-stale` even when no baseline was captured.
+
+If source-first verification finds the superseded fact on an intended canonical page or crawl source, the check stops at `source-not-fixed`. If source verification is inconclusive, it stops at `source-unverified`. Downstream propagation is not classified until the source is verified as corrected.
 
 Live engine queries, authenticated webmaster actions, reindex requests, and recurring monitoring require explicit authorization. The skill does not claim it can force a refresh or guarantee propagation timing.
 

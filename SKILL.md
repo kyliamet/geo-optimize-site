@@ -1,6 +1,6 @@
 ---
 name: geo-optimize-site
-description: Audit and implement Generative Engine Optimization (GEO) for websites so accurate public content is easier for AI search and answer engines to discover, understand, quote, and cite. Use when a user asks for GEO, AI-search visibility, answer-engine optimization, llms.txt, or crawler access; do not trigger for ordinary SEO-only or marketing-copy tasks.
+description: Audit and implement Generative Engine Optimization (GEO) for websites so accurate public content is easier for AI search and answer engines to discover, understand, quote, and cite. Use when a user asks for GEO, AI-search visibility, answer-engine optimization, stale AI citations, post-deployment propagation checks, llms.txt, or crawler access; do not trigger for ordinary SEO-only or marketing-copy tasks.
 ---
 
 # GEO Optimize Site
@@ -35,6 +35,12 @@ Improve AI-answer visibility without inventing facts, degrading the visitor expe
 - Verify one intended H1 and canonical per indexable page, valid local assets and internal routes, and successful HTTP responses for public GEO files.
 - Render changed pages locally at relevant viewport sizes. Inspect headings, layout, browser console output, dynamic content, and key interactions.
 - Review the final diff for unsupported claims, stale dates, accidental design changes, secrets, unrelated files, and whitespace errors.
+
+## Re-check downstream propagation only when requested
+
+- Treat site-side correctness and downstream engine freshness as separate results. A valid deployment does not prove that an external engine has refreshed an index, cache, or generated answer.
+- Run live engine queries, authenticated webmaster actions, reindex requests, or recurring checks only when the user explicitly requests and authorizes them.
+- For a propagation check, read [references/propagation-checks.md](references/propagation-checks.md) and report comparable evidence without implying control over engine refresh timing.
 
 ## Publish only within authorization
 

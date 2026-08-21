@@ -27,3 +27,7 @@ Report checks actually performed, such as builds, tests, parsed JSON-LD and XML,
 ## Remaining decisions
 
 Call out crawler-policy choices, unsupported claims, deployment-dependent behavior, or owner-supplied facts that Codex should not decide by inference.
+
+## Propagation observations
+
+Include this section only when the user requested downstream re-checking. For each engine and control query, record the timestamp, expected fact, observed fact, cited URLs, comparison limitations, and one state: `site-fixed`, `crawl-signals-updated`, `engine-stale`, `propagated`, or `unable-to-verify`.
